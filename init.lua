@@ -382,6 +382,11 @@ vim.keymap.set("n", "\\s", function()
   end,
   { desc = "Format and save buffer" }
 )
+vim.keymap.set("n", "\\t", function()
+    vim.cmd [[ Neotree toggle ]]
+  end,
+  { desc = "Toggle Neotree" }
+)
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -641,12 +646,34 @@ require("mason-lspconfig").setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property "filetypes" to the map in question.
 local servers = {
-  -- clangd = {},
-  gopls = {},
-  pyright = {},
-  rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { "html", "twig", "hbs"} },
+  rust_analyzer = {
+    check = {
+      features = "all",
+      command = "clippy",
+    },
+    rustfmt = {
+      extraArgs = { "+nightly" }
+    }
+  },
+  terraformls = {},
+  ruff_lsp = {},
+  -- bashls = {},
+  gopls = {
+    hints = {
+      assignVariableTypes = true,
+      compositeLiteralFields = true,
+      constantValues = true,
+      functionTypeParameters = true,
+      parameterNames = true,
+      rangeVariableTypes = true,
+    }
+  },
+  -- hydra_lsp = {},
+  -- jsonls = {},
+  taplo = {},
+  -- dockerls = {},
+  -- docker_compose_language_service = {},
+  helm_ls = {},
 
   lua_ls = {
     Lua = {
