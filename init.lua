@@ -42,6 +42,19 @@ require("lazy").setup({
   -- Context You
   "wellle/context.vim",
 
+  -- Whitespace is surprisingly still a problem in 2024
+  {
+    "ntpeters/vim-better-whitespace",
+    config = function()
+      vim.g.better_whitespace_enabled = true
+      vim.g.strip_whitespace_on_save = true
+      vim.g.strip_whitespace_confirm = false
+    end,
+  },
+
+  -- Copilot
+  "github/copilot.vim",
+
   -- Inlay hints for LSP servers
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -657,6 +670,7 @@ local servers = {
   },
   terraformls = {},
   ruff_lsp = {},
+  -- pyright = {},
   -- bashls = {},
   gopls = {
     hints = {
@@ -669,7 +683,8 @@ local servers = {
     }
   },
   -- hydra_lsp = {},
-  -- jsonls = {},
+  jsonls = {},
+  yamlls = {},
   taplo = {},
   -- dockerls = {},
   -- docker_compose_language_service = {},
