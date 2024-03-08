@@ -42,6 +42,12 @@ require("lazy").setup({
   -- Context You
   "wellle/context.vim",
 
+  {
+    "wfxr/protobuf.vim",
+    lazy = true,
+    ft = "proto"
+  },
+
   -- Whitespace is surprisingly still a problem in 2024
   {
     "ntpeters/vim-better-whitespace",
@@ -239,8 +245,8 @@ require("lazy").setup({
 
   {
     "ramojus/mellifluous.nvim",
-    priority = 1000,
     lazy = false,
+    priority = 1000,
     config = function()
       require("mellifluous").setup({
         dim_inactive = true,
@@ -251,8 +257,8 @@ require("lazy").setup({
 
   {
     "xiyaowong/transparent.nvim",
-    priority = 1000,
     lazy = false,
+    priority = 1000,
     config = function()
       require("transparent").setup({
         exclude_groups = { "CursorLine" }
@@ -660,9 +666,11 @@ require("mason-lspconfig").setup()
 --  define the property "filetypes" to the map in question.
 local servers = {
   rust_analyzer = {
+    checkOnSave = true,
     check = {
-      features = "all",
+      enable = true,
       command = "clippy",
+      features = "all",
     },
     rustfmt = {
       extraArgs = { "+nightly" }
