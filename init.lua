@@ -59,7 +59,7 @@ require("lazy").setup({
   },
 
   -- Copilot
-  "github/copilot.vim",
+  -- "github/copilot.vim",
 
   -- Inlay hints for LSP servers
   {
@@ -666,11 +666,13 @@ require("mason-lspconfig").setup()
 --  define the property "filetypes" to the map in question.
 local servers = {
   rust_analyzer = {
-    checkOnSave = true,
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy"
+      }
+    },
     check = {
       enable = true,
-      command = "clippy",
-      features = "all",
     },
     rustfmt = {
       extraArgs = { "+nightly" }
@@ -691,8 +693,8 @@ local servers = {
     }
   },
   -- hydra_lsp = {},
-  jsonls = {},
-  yamlls = {},
+  -- jsonls = {},
+  -- yamlls = {},
   taplo = {},
   -- dockerls = {},
   -- docker_compose_language_service = {},
