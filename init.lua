@@ -59,7 +59,7 @@ require("lazy").setup({
   },
 
   -- Copilot
-  -- "github/copilot.vim",
+  "github/copilot.vim",
 
   -- Inlay hints for LSP servers
   {
@@ -684,19 +684,19 @@ local servers = {
     ["rust-analyzer"] = {
       checkOnSave = {
         command = "clippy"
+      },
+      rustfmt = {
+        extraArgs = { "+nightly", },
       }
     },
     check = {
       enable = true,
     },
-    rustfmt = {
-      extraArgs = { "+nightly" }
-    }
   },
   terraformls = {},
   ruff_lsp = {},
   -- pyright = {},
-  -- bashls = {},
+  bashls = {},
   gopls = {
     hints = {
       assignVariableTypes = true,
@@ -709,8 +709,8 @@ local servers = {
   },
   markdown_oxide = {},
   -- hydra_lsp = {},
-  -- jsonls = {},
-  -- yamlls = {},
+  jsonls = {},
+  yamlls = {},
   taplo = {},
   -- dockerls = {},
   -- docker_compose_language_service = {},
