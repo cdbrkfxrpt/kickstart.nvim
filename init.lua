@@ -380,9 +380,9 @@ vim.o.colorcolumn = "101"
 -- SPACES vs TABS
 vim.o.expandtab = true
 vim.o.smarttab = true
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
 -- cursor things
 vim.o.fileformats = "unix,dos,mac"
@@ -392,11 +392,25 @@ vim.o.guicursor = "a:hor20"
 vim.wo.cursorline = true
 
 -- [[ Basic Keymaps ]]
+local formatters = {
+  go = "golines",
+}
+
+local function fmt()
+  if formatters[vim.bo.filetype] == nil then
+    vim.lsp.buf.format()
+  else
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd("%!" .. formatters[vim.bo.filetype])
+    vim.api.nvim_win_set_cursor(0, cursor_pos)
+  end
+end
 
 -- My fucked up shortcuts
-vim.keymap.set("n", "\\k", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set("n", "\\k", fmt, { desc = "Format buffer" })
 vim.keymap.set("n", "\\s", function()
-    vim.lsp.buf.format()
+    -- vim.lsp.buf.format()
+    fmt()
     vim.cmd.write()
   end,
   { desc = "Format and save buffer" }
@@ -505,6 +519,7 @@ vim.keymap.set("n", "<leader>s/", telescope_live_grep_open_files, { desc = "[S]e
 vim.keymap.set("n", "<leader>ss", require("telescope.builtin").builtin, { desc = "[S]earch [S]elect Telescope" })
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>p", require("telescope.builtin").find_files, { desc = "Search [P]roject" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
@@ -692,6 +707,7 @@ local servers = {
       rangeVariableTypes = true,
     }
   },
+  markdown_oxide = {},
   -- hydra_lsp = {},
   -- jsonls = {},
   -- yamlls = {},
@@ -699,7 +715,7 @@ local servers = {
   -- dockerls = {},
   -- docker_compose_language_service = {},
   helm_ls = {},
-
+  nil_ls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
