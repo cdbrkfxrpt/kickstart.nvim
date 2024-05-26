@@ -394,6 +394,7 @@ vim.wo.cursorline = true
 -- [[ Basic Keymaps ]]
 local formatters = {
   go = "golines",
+  nix = "nixfmt",
 }
 
 local function fmt()
