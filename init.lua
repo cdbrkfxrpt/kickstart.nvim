@@ -404,6 +404,13 @@ local function fmt()
     vim.cmd("%!" .. formatters[vim.bo.filetype])
     vim.api.nvim_win_set_cursor(0, cursor_pos)
   end
+
+  if vim.bo.filetype == "go" then
+    vim.lsp.buf.code_action({
+      context = { only = { "source.organizeImports" } },
+      apply = true,
+    })
+  end
 end
 
 -- My fucked up shortcuts
@@ -698,6 +705,9 @@ local servers = {
   -- pyright = {},
   bashls = {},
   gopls = {
+    analyses = {
+      unusedparams = true,
+    },
     hints = {
       assignVariableTypes = true,
       compositeLiteralFields = true,
@@ -705,7 +715,9 @@ local servers = {
       functionTypeParameters = true,
       parameterNames = true,
       rangeVariableTypes = true,
-    }
+    },
+    staticcheck = true,
+    gofumpt = true,
   },
   markdown_oxide = {},
   -- hydra_lsp = {},
