@@ -686,9 +686,9 @@ local servers = {
       checkOnSave = {
         command = "clippy"
       },
-      rustfmt = {
-        extraArgs = { "+nightly", },
-      }
+      -- rustfmt = {
+      --   extraArgs = { "+nightly", },
+      -- }
     },
     check = {
       enable = true,
