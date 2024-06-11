@@ -693,17 +693,17 @@ local servers = {
       checkOnSave = {
         command = "clippy"
       },
-      rustfmt = {
-        extraArgs = { "+nightly", },
-      }
+      -- rustfmt = {
+      --   extraArgs = { "+nightly", },
+      -- }
     },
     check = {
       enable = true,
     },
   },
   terraformls = {},
-  ruff_lsp = {},
-  -- pyright = {},
+  ruff = {},
+  pyright = {},
   bashls = {},
   gopls = {
     analyses = {
