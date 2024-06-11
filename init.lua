@@ -408,7 +408,10 @@ local function fmt()
 
   if vim.bo.filetype == "go" then
     vim.lsp.buf.code_action({
-      context = { only = { "source.organizeImports" } },
+      context = {
+        only = { "source.organizeImports" },
+        diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+      },
       apply = true,
     })
   end
