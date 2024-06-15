@@ -705,8 +705,8 @@ local servers = {
     },
   },
   terraformls = {},
-  ruff_lsp = {},
-  -- pyright = {},
+  ruff = {},
+  pyright = {},
   bashls = {},
   gopls = {
     analyses = {
