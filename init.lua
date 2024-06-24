@@ -391,6 +391,10 @@ vim.o.virtualedit = "all,onemore"
 vim.o.guicursor = "a:hor20"
 vim.wo.cursorline = true
 
+-- Show filename in window title
+vim.o.title = true
+vim.o.titlestring = "%{hostname()} %F %{strftime('%Y-%m-%d %H:%M',getftime(expand('%')))}"
+
 -- [[ Basic Keymaps ]]
 local formatters = {
   go = "golines",
