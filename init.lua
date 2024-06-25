@@ -391,6 +391,10 @@ vim.o.virtualedit = "all,onemore"
 vim.o.guicursor = "a:hor20"
 vim.wo.cursorline = true
 
+-- Show filename in window title
+vim.o.title = true
+vim.o.titlestring = "%{hostname()} %F %{strftime('%Y-%m-%d %H:%M',getftime(expand('%')))}"
+
 -- [[ Basic Keymaps ]]
 local formatters = {
   go = "golines",
@@ -778,7 +782,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require("lsp-inlayhints").on_attach(client, bufnr)
+
+    if client ~= nil then
+      require("lsp-inlayhints").on_attach(client, bufnr)
+    end
   end,
 })
 
