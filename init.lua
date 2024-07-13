@@ -42,6 +42,7 @@ require("lazy").setup({
   -- Context You
   "wellle/context.vim",
 
+  -- Protocol buffer syntax highlighting et al.
   {
     "wfxr/protobuf.vim",
     lazy = true,
@@ -58,8 +59,20 @@ require("lazy").setup({
     end,
   },
 
-  -- Copilot
-  "github/copilot.vim",
+  -- codeium
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
+  },
+
+  -- Diffview for merge & rebase
+  'sindrets/diffview.nvim',
+  -- {
+  --   'sindrets/diffview.nvim',
+  --   config = function()
+  --     require('diffview').setup()
+  --   end
+  -- },
 
   -- Inlay hints for LSP servers
   {
